@@ -1,0 +1,66 @@
+//Default list of assets 
+
+//P.S I made up the model names from my limited imagination 
+
+tracker.AddAsset(new Smartphone(new Price(200, Currency.USD), DateTime.Now.AddMonths(-36 + 4), "Motorola", "X3", usa)); 
+
+tracker.AddAsset(new Smartphone(new Price(400, Currency.USD), DateTime.Now.AddMonths(-36 + 5), "Motorola", "X3", usa)); 
+
+tracker.AddAsset(new Smartphone(new Price(400, Currency.USD), DateTime.Now.AddMonths(-36 + 10), "Motorola", "X2", usa)); 
+
+tracker.AddAsset(new Smartphone(new Price(4500, Currency.SEK), DateTime.Now.AddMonths(-36 + 6), "Samsung", "Galaxy 10", sweden)); 
+
+tracker.AddAsset(new Smartphone(new Price(4500, Currency.SEK), DateTime.Now.AddMonths(-36 + 7), "Samsung", "Galaxy 10", sweden)); 
+
+tracker.AddAsset(new Smartphone(new Price(3000, Currency.SEK), DateTime.Now.AddMonths(-36 + 4), "Sony", "XPeria 7", sweden)); 
+
+tracker.AddAsset(new Smartphone(new Price(3000, Currency.SEK), DateTime.Now.AddMonths(-36 + 5), "Sony", "XPeria 7", sweden)); 
+
+tracker.AddAsset(new Smartphone(new Price(220, Currency.EUR), DateTime.Now.AddMonths(-36 + 12), "Siemens", "Brick", germany)); 
+
+tracker.AddAsset(new Computer(new Price(100, Currency.USD), DateTime.Now.AddMonths(-38), "Dell", "Desktop 900", usa)); 
+
+tracker.AddAsset(new Computer(new Price(100, Currency.USD), DateTime.Now.AddMonths(-37), "Dell", "Desktop 900", usa)); 
+
+tracker.AddAsset(new Computer(new Price(300, Currency.USD), DateTime.Now.AddMonths(-36 + 1), "Lenovo", "X100", usa)); 
+
+tracker.AddAsset(new Computer(new Price(300, Currency.USD), DateTime.Now.AddMonths(-36 + 4), "Lenovo", "X200", usa)); 
+
+tracker.AddAsset(new Computer(new Price(500, Currency.USD), DateTime.Now.AddMonths(-36 + 9), "Lenovo", "X300", usa)); 
+
+tracker.AddAsset(new Computer(new Price(1500, Currency.SEK), DateTime.Now.AddMonths(-36 + 7), "Dell", "Optiplex 100", sweden)); 
+
+tracker.AddAsset(new Computer(new Price(1400, Currency.SEK), DateTime.Now.AddMonths(-36 + 8), "Dell", "Optiplex 200", sweden)); 
+
+tracker.AddAsset(new Computer(new Price(1300, Currency.SEK), DateTime.Now.AddMonths(-36 + 9), "Dell", "Optiplex 300", sweden)); 
+
+tracker.AddAsset(new Computer(new Price(1600, Currency.EUR), DateTime.Now.AddMonths(-36 + 14), "Asus", "ROG 600", germany)); 
+
+tracker.AddAsset(new Computer(new Price(1200, Currency.EUR), DateTime.Now.AddMonths(-36 + 4), "Asus", "ROG 500", germany)); 
+
+tracker.AddAsset(new Computer(new Price(1200, Currency.EUR), DateTime.Now.AddMonths(-36 + 3), "Asus", "ROG 500", germany)); 
+
+tracker.AddAsset(new Computer(new Price(1300, Currency.EUR), DateTime.Now.AddMonths(-36 + 2), "Asus", "ROG 500", germany)); 
+
+ 
+ 
+
+// Adding assets to the list 
+
+assets.Add(new Phone("iPhone", "8", "Spain", new DateTime(2018, 12, 29), 970, "EUR", 801.65)); 
+
+assets.Add(new Computer("HP", "Elitebook", "Spain", new DateTime(2019, 6, 1), 1423, "EUR", 1176.03)); 
+
+assets.Add(new Phone("iPhone", "11", "Spain", new DateTime(2020, 9, 25), 990, "EUR", 818.18)); 
+
+assets.Add(new Phone("iPhone", "X", "Sweden", new DateTime(2018, 7, 15), 1245, "SEK", 10375)); 
+
+assets.Add(new Phone("Motorola", "Razr", "Sweden", new DateTime(2020, 3, 16), 970, "SEK", 8083.33)); 
+
+assets.Add(new Computer("HP", "Elitebook", "Sweden", new DateTime(2020, 10, 2), 588, "SEK", 4900)); 
+
+assets.Add(new Computer("ASUS", "W234", "USA", new DateTime(2017, 4, 21), 1200, "USD", 1200)); 
+
+assets.Add(new Computer("Lenovo", "Yoga 730", "USA", new DateTime(2018, 5, 28), 835, "USD", 835)); 
+
+assets.Add(new Computer("Lenovo", "Yoga 530", "USA", new DateTime(2019, 5, 21), 1030, "USD", 1030)); 
