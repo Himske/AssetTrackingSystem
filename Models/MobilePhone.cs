@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AssetTrackingSystem.Models {
     internal class MobilePhone : Asset {
-        public MobilePhone(string brand, string model, DateOnly purchaseDate, int price, string currency, string office) {
+        public MobilePhone(string brand, string model, DateTime purchaseDate, int price, string currency, string office) {
             Brand = brand;
             Model = model;
             PurchaseDate = purchaseDate;
