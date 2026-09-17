@@ -1,0 +1,90 @@
+[
+  {
+    "$type": "computer",
+    "AssetType": "Laptop",
+    "Id": "0f2df1c7-3d89-4941-9287-c500862aaabd",
+    "Brand": "Apple",
+    "Model": "MacBook Pro",
+    "PurchaseDate": "2024-03-15T00:00:00",
+    "Price": 2500,
+    "Country": "Sweden",
+    "Currency": "SEK"
+  },
+  {
+    "$type": "computer",
+    "AssetType": "Laptop",
+    "Id": "cd306671-fafe-4622-bc16-224bea8e9241",
+    "Brand": "Apple",
+    "Model": "MacBook Pro",
+    "PurchaseDate": "2026-01-13T00:00:00",
+    "Price": 2600,
+    "Country": "Germany",
+    "Currency": "EUR"
+  },
+  {
+    "$type": "computer",
+    "AssetType": "Laptop",
+    "Id": "367634b6-3fc2-4be9-a72f-3633566d0149",
+    "Brand": "Apple",
+    "Model": "MacBook Pro",
+    "PurchaseDate": "2025-07-12T00:00:00",
+    "Price": 2600,
+    "Country": "Turkey",
+    "Currency": "TRY"
+  },
+  {
+    "$type": "computer",
+    "AssetType": "Laptop",
+    "Id": "359ea2d0-5557-4f0d-86a8-b8095a26760a",
+    "Brand": "Apple",
+    "Model": "MacBook Pro",
+    "PurchaseDate": "2026-05-03T00:00:00",
+    "Price": 2600,
+    "Country": "USA",
+    "Currency": "USD"
+  },
+  {
+    "$type": "mobile",
+    "AssetType": "Phone",
+    "Id": "507fb7bf-bc8d-45d8-913b-c1bf46ccb4a5",
+    "Brand": "Apple",
+    "Model": "iPhone 15",
+    "PurchaseDate": "2024-12-05T00:00:00",
+    "Price": 1000,
+    "Country": "Sweden",
+    "Currency": "SEK"
+  },
+  {
+    "$type": "computer",
+    "AssetType": "Laptop",
+    "Id": "a36c06cf-68cf-4969-9476-98bf6d5bad2e",
+    "Brand": "Lenovo",
+    "Model": "ThinkPad X1",
+    "PurchaseDate": "2023-10-01T00:00:00",
+    "Price": 1500,
+    "Country": "Sweden",
+    "Currency": "SEK"
+  },
+  {
+    "$type": "mobile",
+    "AssetType": "Phone",
+    "Id": "492d6626-a101-4ac2-8344-4d4562960659",
+    "Brand": "Samsung",
+    "Model": "Galaxy S23",
+    "PurchaseDate": "2025-01-10T00:00:00",
+    "Price": 1200,
+    "Country": "Sweden",
+    "Currency": "SEK"
+  },
+  {
+    "$type": "computer",
+    "AssetType": "Laptop",
+    "Id": "907ad4f4-1377-4acd-8852-a9e761ae72b0",
+    "Brand": "Dell",
+    "Model": "XPS 17",
+    "PurchaseDate": "2022-10-01T00:00:00",
+    "Price": 1300,
+    "Country": "Sweden",
+    "Currency": "SEK"
+  }
+]
