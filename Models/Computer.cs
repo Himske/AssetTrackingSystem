@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AssetTrackingSystem.Models {
+﻿namespace AssetTrackingSystem.Models {
     internal class Computer : Asset {
-        public Computer(string brand, string model, DateTime purchaseDate, int price, Office office) {
+        public Computer(string brand, string model, DateTime purchaseDate, int price, string country, string currency) {
             Brand = brand;
             Model = model;
             PurchaseDate = purchaseDate;
             Price = price;
-            Office = office;
+            Country = country;
+            Currency = currency;
             AssetType = "Laptop";
         }
     }
