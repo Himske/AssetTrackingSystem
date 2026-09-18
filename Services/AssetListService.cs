@@ -191,6 +191,7 @@ namespace AssetTrackingSystem.Services {
 
         public static void LoadAssets() {
             Console.WriteLine("Loading Assets from file...");
+            Console.WriteLine();
             string filePath = Path.Combine(Directory.GetCurrentDirectory(), "Data", s_fileName);
             if (!File.Exists(filePath)) {
                 Console.ForegroundColor = ConsoleColor.Yellow;
