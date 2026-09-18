@@ -16,7 +16,7 @@ cd path\to\your\project
 dotnet restore  
 * Build the project  
 dotnet build -c Release  
-
+## 4. Run the application  
 Output executable will usually be in: bin\Release\netX.Y\YourApp.exe  
 Double click the exe file to run the application.  
 
