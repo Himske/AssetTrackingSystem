@@ -1,5 +1,26 @@
 # Asset Tracking System  
 A simple console application to track assets for different offices.  
+
+# Installing and running the application  
+## 1. Prerequisites  
+.NET SDK or Runtime: Depending on whether you need to compile or just run the application.  
+For building: install the .NET SDK.  
+For running: install the .NET Runtime.  
+Download from https://dotnet.microsoft.com/download.  
+## 2. Clone this repository or download zip file  
+Either use git clone https://github.com/Himske/AssetTrackingSystem.git or download as a zip file from github.  
+## 3. Build the application  
+* Navigate to the project directory  
+cd path\to\your\project  
+* Restore dependencies  
+dotnet restore  
+* Build the project  
+dotnet build -c Release  
+
+Output executable will usually be in: bin\Release\netX.Y\YourApp.exe  
+Double click the exe file to run the application.  
+
+# How the application works
 When starting the application it will load any previously saved assets.  
 <img width="289" height="110" alt="image" src="https://github.com/user-attachments/assets/c34b58d2-e67c-4690-af8f-25207446a2b6" />  
 Then it will show the menu options:  
@@ -31,23 +52,3 @@ The filename will have the format "asset_report_YYYY_MM_DD_HH_MI_SS.csv".
 
 ## 6. Exit  
 This option will save the assets currently in the system and exit the program.
-  
-
-# Installing and running the application  
-## 1. Prerequisites  
-.NET SDK or Runtime: Depending on whether you need to compile or just run the application.  
-For building: install the .NET SDK.  
-For running: install the .NET Runtime.  
-Download from https://dotnet.microsoft.com/download.  
-## 2. Clone this repository  
-git clone 
-## 3. Build the application  
-* Navigate to the project directory  
-cd path\to\your\project  
-* Restore dependencies  
-dotnet restore  
-* Build the project  
-dotnet build -c Release  
-
-Output executable will usually be in: bin\Release  
-etX.Y\YourApp.exe  
