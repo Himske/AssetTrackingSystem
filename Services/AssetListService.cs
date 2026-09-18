@@ -56,6 +56,10 @@ namespace AssetTrackingSystem.Services {
                         AssetList.Add(new MobilePhone(brand, model, purchaseDate, price, country, currency));
                         break;
                 }
+
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine();
+                Console.WriteLine("Asset Added Successfully.");
                 SaveAssets();
                 ResetAndPause();
             }
@@ -71,7 +75,8 @@ namespace AssetTrackingSystem.Services {
             string idStr = GetInput("Remove Asset(Id): ");
             if (!string.IsNullOrWhiteSpace(idStr)) {
                 try {
-                    Asset? asset = AssetList.FirstOrDefault(p => p.Id.ToString().Equals(idStr), defaultValue: null);
+                    Guid id = Guid.Parse(idStr);
+                    Asset? asset = AssetList.FirstOrDefault(p => p?.Id == id, defaultValue: null);
                     if (asset != null) {
                         AssetList.Remove(asset);
                         Console.WriteLine();
