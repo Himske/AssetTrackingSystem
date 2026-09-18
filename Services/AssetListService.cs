@@ -46,7 +46,7 @@ namespace AssetTrackingSystem.Services {
                 string country = GetCountry();
                 string currency = GetCurrency();
 
-                price = HardcodedCurrencyConverter.Convert(price, currency, "USD");
+                price = Math.Round(HardcodedCurrencyConverter.Convert(price, currency, "USD"), 2);
 
                 switch (assetType) {
                     case "Computer":
@@ -241,6 +241,20 @@ namespace AssetTrackingSystem.Services {
             ResetAndPause();
         }
 
+        public static void ExportToCSV() {
+            string filePath = $"asset_report_{DateTime.Now:yyyy_MM_dd_HH_mm_ss}.csv";
+            using (var writer = new StreamWriter(filePath)) {
+                writer.WriteLine("Id,Country,AssetType,Brand,Model,Price,Currency,PurchaseDate");
+                foreach (var asset in AssetList) {
+                    string row = $"{asset.Id},\"{asset.Country}\",\"{asset.AssetType}\",\"{asset.Brand}\",\"{asset.Model}\",\"{asset.Price}\",\"{asset.Currency}\",{asset.PurchaseDate:yyyy-MM-dd}";
+                    writer.WriteLine(row);
+                }
+            }
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("CSV file created successfully!");
+            ResetAndPause();
+        }
+
         public static void ShowHeader() {
             Console.ForegroundColor= ConsoleColor.Cyan;
             Console.WriteLine("*".PadRight(110, '*'));
@@ -255,7 +269,8 @@ namespace AssetTrackingSystem.Services {
             Console.WriteLine("2. View Assets");
             Console.WriteLine("3. Search Assets");
             Console.WriteLine("4. Remove Asset");
-            Console.WriteLine("5. Exit");
+            Console.WriteLine("5. Create Asset Report");
+            Console.WriteLine("6. Exit");
             Console.WriteLine();
         }
 

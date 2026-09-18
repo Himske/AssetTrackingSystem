@@ -30,6 +30,11 @@ while (true) {
             AssetListService.RemoveAsset();
             break;
         case "5":
+            Console.Clear();
+            AssetListService.ShowHeader();
+            AssetListService.ExportToCSV();
+            break;
+        case "6":
             AssetListService.SaveAssets();
             Environment.Exit(0);
             break;

@@ -86,5 +86,16 @@
     "Price": 1300,
     "Country": "Sweden",
     "Currency": "SEK"
+  },
+  {
+    "$type": "computer",
+    "AssetType": "Laptop",
+    "Id": "4c729fff-3878-420e-83f8-e8d120555595",
+    "Brand": "Dell",
+    "Model": "XPS 16",
+    "PurchaseDate": "2021-05-03T00:00:00",
+    "Price": 952,
+    "Country": "Sweden",
+    "Currency": "SEK"
   }
 ]
