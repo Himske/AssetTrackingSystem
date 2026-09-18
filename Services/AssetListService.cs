@@ -228,7 +228,7 @@ namespace AssetTrackingSystem.Services {
             Console.WriteLine("FOUND ASSETS:");
             Console.WriteLine();
             ShowListHeading();
-            foreach (var asset in AssetList.OrderBy(p => p.Price)) {
+            foreach (var asset in AssetList.OrderBy(a => a.Country).ThenBy(a => a.PurchaseDate)) {
                 if (asset.Brand.Contains(query, StringComparison.CurrentCultureIgnoreCase) ||
                     asset.Model.Contains(query, StringComparison.CurrentCultureIgnoreCase)) {
                     Console.ForegroundColor = ConsoleColor.Green;
@@ -246,7 +246,8 @@ namespace AssetTrackingSystem.Services {
             using (var writer = new StreamWriter(filePath)) {
                 writer.WriteLine("Id,Country,AssetType,Brand,Model,Price,Currency,PurchaseDate");
                 foreach (var asset in AssetList) {
-                    string row = $"{asset.Id},\"{asset.Country}\",\"{asset.AssetType}\",\"{asset.Brand}\",\"{asset.Model}\",\"{asset.Price}\",\"{asset.Currency}\",{asset.PurchaseDate:yyyy-MM-dd}";
+                    decimal localPrice = Math.Round(HardcodedCurrencyConverter.Convert(asset.Price, "USD", asset.Currency),2);
+                    string row = $"{asset.Id},\"{asset.Country}\",\"{asset.AssetType}\",\"{asset.Brand}\",\"{asset.Model}\",\"{localPrice}\",\"{asset.Currency}\",{asset.PurchaseDate:yyyy-MM-dd}";
                     writer.WriteLine(row);
                 }
             }
