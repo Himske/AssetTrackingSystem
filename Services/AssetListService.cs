@@ -56,8 +56,49 @@ namespace AssetTrackingSystem.Services {
                         AssetList.Add(new MobilePhone(brand, model, purchaseDate, price, country, currency));
                         break;
                 }
+                SaveAssets();
+                ResetAndPause();
             }
-            catch { }
+            catch (Exception ex) {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine();
+                Console.WriteLine(ex.Message);
+                ResetAndPause();
+            }
+        }
+
+        public static void RemoveAsset() {
+            string idStr = GetInput("Remove Asset(Id): ");
+            if (!string.IsNullOrWhiteSpace(idStr)) {
+                try {
+                    Asset? asset = AssetList.FirstOrDefault(p => p.Id.ToString().Equals(idStr), defaultValue: null);
+                    if (asset != null) {
+                        AssetList.Remove(asset);
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine($"Asset: {asset}");
+                        Console.WriteLine();
+                        Console.WriteLine("Removed Successfully.");
+                        SaveAssets();
+                    }
+                    else {
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("That asset doesn't exist.");
+                    }
+                }
+                catch {
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("That's not a valid Id.");
+                }
+            }
+            else {
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("No asset deleted.");
+            }
+            ResetAndPause();
         }
 
         public static string GetInput(string prompt) {
@@ -101,7 +142,7 @@ namespace AssetTrackingSystem.Services {
                 throw new ArgumentException("Purchase date can't be empty.");
             }
             if (!DateTime.TryParse(purchaseDateStr, out DateTime purchaseDate)) {
-                throw new ArgumentException($"{purchaseDateStr} is invalid.");
+                throw new ArgumentException($"{purchaseDateStr} is an invalid date.");
             }
             return purchaseDate;
         }
@@ -137,12 +178,14 @@ namespace AssetTrackingSystem.Services {
             string jsonString = JsonSerializer.Serialize(AssetList, s_options);
             string filePath = Path.Combine(Directory.GetCurrentDirectory(), "Data", s_fileName);
             File.WriteAllText(filePath, jsonString);
+            Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Assets Saved Successfully.");
-            ResetAndPause();
+            Console.ResetColor();
         }
 
         public static void LoadAssets() {
+            Console.WriteLine("Loading Assets from file...");
             string filePath = Path.Combine(Directory.GetCurrentDirectory(), "Data", s_fileName);
             if (!File.Exists(filePath)) {
                 Console.ForegroundColor = ConsoleColor.Yellow;
@@ -158,9 +201,8 @@ namespace AssetTrackingSystem.Services {
                     try {
                         AssetList = JsonSerializer.Deserialize<List<Asset>>(jsonString, s_options) ?? [];
                         Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("Loading Assets...");
-                        Thread.Sleep(1000);
-                        Console.WriteLine("Assets Loaded Successfully.");
+                        //Thread.Sleep(1000);
+                        Console.WriteLine($"{AssetList.Count} Assets loaded successfully.");
 
                     }
                     catch (JsonException ex) {
@@ -172,10 +214,33 @@ namespace AssetTrackingSystem.Services {
             ResetAndPause();
         }
 
+        public static void SearchAssets() {
+            string query = GetInput("Search Asset: ");
+            List<Asset> products = AssetList.FindAll(s => s.Brand.Contains(query, StringComparison.CurrentCultureIgnoreCase));
+            products.AddRange(AssetList.FindAll(s => s.Model.Contains(query, StringComparison.CurrentCultureIgnoreCase)));
+            Console.WriteLine();
+            Console.WriteLine("FOUND ASSETS:");
+            Console.WriteLine();
+            ShowListHeading();
+            foreach (var asset in AssetList.OrderBy(p => p.Price)) {
+                if (asset.Brand.Contains(query, StringComparison.CurrentCultureIgnoreCase) ||
+                    asset.Model.Contains(query, StringComparison.CurrentCultureIgnoreCase)) {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                }
+                else {
+                    Console.ResetColor();
+                }
+                Console.WriteLine(asset);
+            }
+            ResetAndPause();
+        }
+
         public static void ShowHeader() {
-            Console.WriteLine("*".PadRight(100, '*'));
-            Console.WriteLine("COMPANY ASSET TRACKING SYSTEM");
-            Console.WriteLine("*".PadRight(100, '*'));
+            Console.ForegroundColor= ConsoleColor.Cyan;
+            Console.WriteLine("*".PadRight(110, '*'));
+            Console.WriteLine("COMPANY ASSET TRACKING SYSTEM".PadRight(100));
+            Console.WriteLine("*".PadRight(110, '*'));
+            Console.ResetColor();
             Console.WriteLine();
         }
 
@@ -196,15 +261,34 @@ namespace AssetTrackingSystem.Services {
             Console.WriteLine();
         }
 
-        public static void ShowAssets() {
-            Console.WriteLine("ASSET LIST");
-            Console.WriteLine("-".PadRight(100, '-'));
-            Console.WriteLine("Office".PadRight(10) + "Type".PadRight(10) + "Brand".PadRight(10) + "Model".PadRight(20) + "Price\t\tPurchase Date\tStatus");
-            Console.WriteLine("-".PadRight(100, '-'));
+        public static void ShowListHeading() {
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("-".PadRight(110, '-'));
+            Console.WriteLine("Office".PadRight(10) + "Type".PadRight(10) + "Brand".PadRight(10) + "Model".PadRight(15) + "Price".PadRight(14) + "Purchase Date  Id");
+            Console.WriteLine("-".PadRight(110, '-'));
+            Console.ResetColor();
+        }
 
-            foreach (var asset in AssetList.OrderBy(a => a.Country).ThenBy(a => a.AssetType)) {
-                decimal localPrice = HardcodedCurrencyConverter.Convert(asset.Price, "USD", asset.Currency);
-                Console.WriteLine($"{asset.Country,-10}{asset.AssetType,-10}{asset.Brand,-10}{asset.Model,-20}{string.Format("{0:0.00}", localPrice)} {asset.Currency}\t{asset.PurchaseDate:yyyy-MM-dd}\t{asset.GetStatus()}");
+        public static void ShowAssets() {
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("ASSET LIST".PadRight(110));
+            Console.ResetColor();
+            ShowListHeading();
+            foreach (var asset in AssetList.OrderBy(a => a.Country).ThenBy(a => a.PurchaseDate)) {
+                string status = asset.GetStatus();
+                switch (status) {
+                    case "RED":
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        break;
+                    case "YELLOW":
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        break;
+                    case "EXPIRED":
+                        Console.ForegroundColor = ConsoleColor.DarkGray;
+                        break;
+                }
+                Console.WriteLine(asset);
+                Console.ResetColor();
             }
             ResetAndPause();
         }

@@ -14,6 +14,7 @@ AssetListService.LoadAssets();
 //AssetListService.SaveAssets();
 
 while (true) {
+    Console.Clear();
     AssetListService.ShowHeader();
     AssetListService.ShowMenu();
 
@@ -30,16 +31,17 @@ while (true) {
             AssetListService.ShowAssets();
             break;
         case "3":
-            //Console.Clear();
-            //AssetListService.ShowHeader();
-            //AssetListService.SearchAssets();
+            Console.Clear();
+            AssetListService.ShowHeader();
+            AssetListService.SearchAssets();
             break;
         case "4":
-            //Console.Clear();
-            //AssetListService.ShowHeader();
-            //AssetListService.DeleteAsset();
+            Console.Clear();
+            AssetListService.ShowHeader();
+            AssetListService.RemoveAsset();
             break;
         case "5":
+            AssetListService.SaveAssets();
             Environment.Exit(0);
             break;
         default:

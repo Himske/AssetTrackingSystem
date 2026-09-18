@@ -1,4 +1,6 @@
-﻿namespace AssetTrackingSystem.Models {
+﻿using AssetTrackingSystem.Services;
+
+namespace AssetTrackingSystem.Models {
     abstract class Asset {
         protected Asset(string brand, string model, DateTime purchaseDate, decimal price, string country, string currency) {
             Brand = brand;
@@ -18,6 +20,10 @@
         public string Country { get; set; } = string.Empty;
         public string Currency { get; set; } = string.Empty;
 
+        public override string ToString() {
+            decimal localPrice = HardcodedCurrencyConverter.Convert(Price, "USD", Currency);
+            return $"{Country,-10}{AssetType,-10}{Brand,-10}{Model,-15}{string.Format("{0:0.00}", localPrice),+9} {Currency} {PurchaseDate:yyyy-MM-dd}     {Id}";
+        }
         public string GetStatus() {
             // Assets "expire" after 3 years.
             DateTime expirationDate = DateTime.Today.AddYears(-3);
